@@ -1,13 +1,13 @@
 import { createI18n } from 'vue-i18n'
 import en from './locales/en.json'
-import bhs from './locales/bhs.json'
+import hr from './locales/hr.json'
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'bhs', // Default language
+  locale: 'en', // Default language
   messages: {
     en,
-    bhs,
+    hr,
   },
 })
 

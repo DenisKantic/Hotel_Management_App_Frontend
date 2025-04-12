@@ -26,7 +26,7 @@
             <v-list-item @click="changeLanguage('en')">
               <v-list-item-title>{{ $t('english') }}</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="changeLanguage('bhs')">
+            <v-list-item @click="changeLanguage('hr')">
               <v-list-item-title>{{ $t('bosnian') }}</v-list-item-title>
             </v-list-item>
           </v-list>
