@@ -4,7 +4,33 @@
       <v-toolbar-title class="text-none">Hotel</v-toolbar-title>
 
       <template v-slot:append>
-        <v-btn icon="mdi-magnify"></v-btn>
+        <!-- Replace magnify icon with translate icon and language dropdown -->
+        <v-menu offset-y>
+          <template #activator="{ props }">
+            <v-btn
+              v-bind="props"
+              icon
+              class="rounded-circle"
+              style="
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                padding: 0;
+                background-color: #f0f0f0;
+              "
+            >
+              <v-icon>mdi-translate</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item @click="changeLanguage('en')">
+              <v-list-item-title>{{ $t('english') }}</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="changeLanguage('bhs')">
+              <v-list-item-title>{{ $t('bosnian') }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
         <v-btn icon="mdi-heart"></v-btn>
 
         <!-- Circle button with dropdown menu -->
@@ -42,9 +68,13 @@
   </v-card>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'HotelToolbar',
+<script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n() // Destructure `locale` to access current language setting
+
+const changeLanguage = (language: string) => {
+  locale.value = language
 }
 </script>
 
