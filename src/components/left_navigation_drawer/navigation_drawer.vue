@@ -14,14 +14,14 @@
     <v-divider />
 
     <v-list nav dense v-model:opened="openedGroups">
-      <v-list-item prepend-icon="mdi-home-city" title="Home" />
+      <v-list-item to="/" prepend-icon="mdi-home-city" title="Home" />
 
       <!-- Reservations -->
       <v-list-group value="reservations" prepend-icon="mdi-calendar-check">
         <template #activator="{ props }">
           <v-list-item v-bind="props" :title="$t('reservations')" />
         </template>
-        <v-list-item :title="$t('create_reservation')" />
+        <v-list-item to="/create-reservation" :title="$t('create_reservation')" />
         <v-list-item :title="$t('view_reservations')" />
       </v-list-group>
 
