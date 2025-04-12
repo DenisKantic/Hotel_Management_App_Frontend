@@ -1,0 +1,16 @@
+{
+  "home": "Početna",
+  "reservations": "Rezervacije",
+  "guests": "Gosti",
+  "rooms": "Sobe",
+  "create_reservation": "Kreiraj rezervaciju",
+  "view_reservations": "Pregled rezervacija",
+  "guest_info": "Info o Gostu",
+  "create_guest": "Kreiraj Gosta",
+  "housekeeping": "Održavanje",
+  "payments": "Plaćanje i Računi",
+  "settings": "Postavke",
+  "logout": "Odjava",
+  "english": "Engleski",
+  "bosnian": "Bosanski"
+}
