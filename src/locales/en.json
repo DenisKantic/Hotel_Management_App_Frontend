@@ -10,5 +10,7 @@
   "housekeeping": "Housekeeping",
   "payments": "Payments & Invoices",
   "settings": "Settings",
-  "logout": "Logout"
+  "logout": "Logout",
+  "english": "English",
+  "bosnian": "Bosnian"
 }

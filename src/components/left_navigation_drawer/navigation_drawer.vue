@@ -7,65 +7,63 @@
       nav
     >
       <template #append>
-        <v-btn icon="mdi-chevron-left" variant="text" @click.stop="rail = !rail" />
+        <v-btn icon="mdi-chevron-left" variant="text" @click.stop="toggleRail" />
       </template>
     </v-list-item>
 
     <v-divider />
 
-    <v-list nav dense>
-      <v-list-item prepend-icon="mdi-home-city" title="Home" @click="rail = false" />
+    <v-list nav dense v-model:opened="openedGroups">
+      <v-list-item prepend-icon="mdi-home-city" title="Home" />
 
-      <!-- Reservations Dropdown -->
-      <v-list-group prepend-icon="mdi-calendar-check" value="reservations">
+      <!-- Reservations -->
+      <v-list-group value="reservations" prepend-icon="mdi-calendar-check">
         <template #activator="{ props }">
-          <v-list-item v-bind="props" :title="$t('reservations')" @click="rail = false" />
+          <v-list-item v-bind="props" :title="$t('reservations')" />
         </template>
         <v-list-item :title="$t('create_reservation')" />
         <v-list-item :title="$t('view_reservations')" />
       </v-list-group>
 
-      <!-- Guests Dropdown -->
-      <v-list-group prepend-icon="mdi-account-multiple" value="guests">
+      <!-- Guests -->
+      <v-list-group value="guests" prepend-icon="mdi-account-multiple">
         <template #activator="{ props }">
-          <v-list-item v-bind="props" :title="$t('guests')" @click="rail = false" />
+          <v-list-item v-bind="props" :title="$t('guests')" />
         </template>
         <v-list-item :title="$t('create_guest')" />
         <v-list-item :title="$t('guest_info')" />
       </v-list-group>
 
-      <!-- Rooms Dropdown -->
-      <v-list-group prepend-icon="mdi-bed" value="rooms">
+      <!-- Rooms -->
+      <v-list-group value="rooms" prepend-icon="mdi-bed">
         <template #activator="{ props }">
-          <v-list-item v-bind="props" :title="$t('rooms')" @click="rail = false" />
+          <v-list-item v-bind="props" :title="$t('rooms')" />
         </template>
         <v-list-item title="All Rooms" />
       </v-list-group>
 
-      <!-- Check-in/out Dropdown -->
-      <v-list-group prepend-icon="mdi-login" value="checkin">
+      <!-- Checkin/out -->
+      <v-list-group value="checkin" prepend-icon="mdi-login">
         <template #activator="{ props }">
-          <v-list-item v-bind="props" title="Check-in/out" @click="rail = false" />
+          <v-list-item v-bind="props" title="Check-in/out" />
         </template>
         <v-list-item title="Check-In" />
         <v-list-item title="Check-Out" />
       </v-list-group>
 
-      <!-- Regular Items -->
-      <v-list-item prepend-icon="mdi-broom" :title="$t('housekeeping')" @click="rail = false" />
-      <v-list-item prepend-icon="mdi-cash-register" :title="$t('payments')" @click="rail = false" />
+      <v-list-item prepend-icon="mdi-broom" :title="$t('housekeeping')" />
+      <v-list-item prepend-icon="mdi-cash-register" :title="$t('payments')" />
 
-      <!-- Settings-->
-      <v-list-group prepend-icon="mdi-cog" value="settings">
+      <!-- Settings -->
+      <v-list-group value="settings" prepend-icon="mdi-cog">
         <template #activator="{ props }">
-          <v-list-item v-bind="props" :title="$t('settings')" @click="rail = false" />
+          <v-list-item v-bind="props" :title="$t('settings')" />
         </template>
         <v-list-item title="User settings" />
         <v-list-item title="Other" />
       </v-list-group>
 
-      <!-- sign off -->
-      <v-list-item prepend-icon="mdi-logout" :title="$t('logout')" @click="rail = false" />
+      <v-list-item prepend-icon="mdi-logout" :title="$t('logout')" />
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -75,10 +73,19 @@ import { ref } from 'vue'
 
 const drawer = ref(true)
 const rail = ref(false)
+
+// Track which groups are opened
+const openedGroups = ref<string[]>([])
+
+const toggleRail = () => {
+  rail.value = !rail.value
+  if (rail.value) {
+    openedGroups.value = [] // collapse all
+  }
+}
 </script>
 
 <style scoped>
-/* disabling selecting the text on navbar menu items by mistake */
 .v-list-item {
   user-select: none;
 }
