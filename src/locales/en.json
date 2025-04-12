@@ -1,0 +1,14 @@
+{
+  "home": "Home",
+  "reservations": "Reservations",
+  "guests": "Guests",
+  "rooms": "Rooms",
+  "create_reservation": "Create Reservation",
+  "view_reservations": "View Reservations",
+  "guest_info": "Guest Info",
+  "create_guest": "Create Guest",
+  "housekeeping": "Housekeeping",
+  "payments": "Payments & Invoices",
+  "settings": "Settings",
+  "logout": "Logout"
+}
