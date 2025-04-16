@@ -1,5 +1,13 @@
 <template>
-  <v-navigation-drawer v-model="drawer" :rail="rail" permanent app @click="rail = false">
+  <v-navigation-drawer
+    v-model="drawer"
+    :rail="rail"
+    permanent
+    app
+    @click="rail = false"
+    class="border-e-md"
+    style="background-color: #fafafa"
+  >
     <v-list-item
       height="64"
       prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
@@ -88,5 +96,11 @@ const toggleRail = () => {
 <style scoped>
 .v-list-item {
   user-select: none;
+  color: black;
+}
+
+.v-list-item:hover {
+  cursor: pointer;
+  color: rgb(24 103 192);
 }
 </style>

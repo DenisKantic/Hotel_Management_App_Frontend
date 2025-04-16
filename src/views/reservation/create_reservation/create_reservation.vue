@@ -1,6 +1,6 @@
 <template>
-  <v-container class="px-10 pt-10">
-    <v-card color="blue-lighten-4 pa-10">
+  <v-container>
+    <v-card variant="text">
       <v-card-title>{{ $t('create_reservation') }}</v-card-title>
 
       <v-form>
@@ -29,10 +29,9 @@
                 v-model="dateRange"
                 color="primary"
                 range
-                locale="de"
+                multiple
                 required
                 :min="minDate"
-                label="Select Date Range"
               ></v-date-picker>
             </v-locale-provider>
           </v-col>
