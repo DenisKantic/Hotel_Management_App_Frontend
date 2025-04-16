@@ -12,5 +12,8 @@
   "settings": "Settings",
   "logout": "Logout",
   "english": "English",
-  "bosnian": "Bosnian"
+  "bosnian": "Bosnian",
+  "login": "Login",
+  "password": "Password",
+  "pass_forgot": "You forgot your password?"
 }

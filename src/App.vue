@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <LeftNavbar />
+    <LeftNavbar v-if="false" />
     <v-main color="primary" style="min-height: 100vh">
-      <TopNavbar />
+      <TopNavbar v-if="false" />
       <router-view />
     </v-main>
   </v-app>

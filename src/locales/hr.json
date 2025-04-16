@@ -12,5 +12,8 @@
   "settings": "Postavke",
   "logout": "Odjava",
   "english": "Engleski",
-  "bosnian": "Bosanski"
+  "bosnian": "Bosanski",
+  "login": "Prijavi se",
+  "password": "Šifra",
+  "pass_forgot": "Zaboravili ste šifru?"
 }
