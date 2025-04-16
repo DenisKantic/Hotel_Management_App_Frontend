@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <LeftNavbar />
-    <v-main>
+    <v-main color="primary" style="min-height: 100vh">
       <TopNavbar />
       <router-view />
     </v-main>
