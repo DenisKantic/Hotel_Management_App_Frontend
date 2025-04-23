@@ -22,117 +22,124 @@
     <div v-else style="min-height: 100%" class="d-flex items-center justify-center">
       <v-container
         class="d-flex align-center justify-center flex-column pb-0 sm-pb-0"
-        style="min-height: 100%; background-color: lightcyan"
+        style="min-height: 100%"
       >
-        <router-link to="/" class="mt-16">
-          <v-avatar class="mb-10 mb-sm-10" color="surface-light" size="100">
-            <img src="@/assets/logo.svg" style="width: 100%" alt="Logo" />
-          </v-avatar>
-        </router-link>
-        <span class="text-center text-h4">{{ $t('login') }}</span> <br />
+        <v-card
+          class="pa-6 mt-4"
+          color="primary"
+          style="width: 100%; max-width: 500px"
+          elevation="10"
+        >
+          <router-link to="/" class="mt-5">
+            <v-avatar class="mb-10 mb-sm-10" color="surface-light" size="100">
+              <img src="@/assets/logo.svg" style="width: 100%" alt="Logo" />
+            </v-avatar>
+          </router-link>
+          <span class="text-h4">{{ $t('login') }}</span> <br />
 
-        <v-form ref="form" v-model="valid" lazy-validation style="width: 50%">
-          <label>Email</label>
-          <v-text-field
-            outlined
-            class="input_field mb-2 mt-2"
-            v-model="email"
-            :rules="computedEmailRules"
-            required
-            variant="outlined"
-            @blur="validateEmail"
-          ></v-text-field>
+          <v-form ref="form" v-model="valid" lazy-validation style="width: 100%">
+            <label>Email</label>
+            <v-text-field
+              outlined
+              class="input_field mb-2 mt-2"
+              v-model="email"
+              :rules="computedEmailRules"
+              required
+              variant="outlined"
+              @blur="validateEmail"
+            ></v-text-field>
 
-          <label>{{ $t('password') }}</label>
-          <v-text-field
-            v-model="password"
-            :rules="computedPasswordRules"
-            required
-            :type="show_password ? 'text' : 'password'"
-            variant="outlined"
-            class="mb-1 mt-2"
-            @blur="validatePassword"
-            ><v-icon id="eye-icon" @click="toggle_password">{{
-              show_password ? 'mdi-eye' : 'mdi-eye-off'
-            }}</v-icon></v-text-field
-          >
+            <label>{{ $t('password') }}</label>
+            <v-text-field
+              v-model="password"
+              :rules="computedPasswordRules"
+              required
+              :type="show_password ? 'text' : 'password'"
+              variant="outlined"
+              class="mb-1 mt-2"
+              @blur="validatePassword"
+              ><v-icon id="eye-icon" @click="toggle_password">{{
+                show_password ? 'mdi-eye' : 'mdi-eye-off'
+              }}</v-icon></v-text-field
+            >
 
-          <v-dialog max-width="500">
-            <template v-slot:activator="{ props: activatorProps }">
-              <v-btn
-                v-bind="activatorProps"
-                color="surface-variant"
-                :text="$t('pass_forgot')"
-                variant="text"
-                class="px-0 text-none"
-              ></v-btn>
-            </template>
+            <v-dialog max-width="500">
+              <template v-slot:activator="{ props: activatorProps }">
+                <v-btn
+                  v-bind="activatorProps"
+                  color="surface-variant"
+                  :text="$t('pass_forgot')"
+                  variant="text"
+                  class="px-0 text-none"
+                ></v-btn>
+              </template>
 
-            <template v-slot:default="{ isActive }">
-              <v-card
-                :loading="is_card_loading"
-                :disabled="is_card_disabled"
-                style="min-height: 20vh"
-                title="Resetuj šifru"
-              >
-                <v-card-text class="text-justify text-subtitle-2"
-                  >Da bi se generisala nova šifra, molimo vas da upišete ispod vašu email adresu, s
-                  kojom ste kreirali vaš korisnički nalog. Nova šifra će biti poslana na vašu email
-                  adresu.</v-card-text
+              <template v-slot:default="{ isActive }">
+                <v-card
+                  :loading="is_card_loading"
+                  :disabled="is_card_disabled"
+                  style="min-height: 20vh"
+                  title="Resetuj šifru"
                 >
-                <v-text-field
-                  outlined
-                  label="Email"
-                  placeholder="Upišite vaš email"
-                  class="px-4"
-                  v-model="reset_email"
-                  :rules="computed_reset_email_rules"
-                  required
-                  variant="outlined"
-                  @blur="validate_reset_email"
-                ></v-text-field>
-                <p v-show="reset_email_error" class="pb-2 text-red font-weight-bold text-center">
-                  Korisnički nalog ne postoji.
-                </p>
-                <p
-                  v-show="reset_email_okay"
-                  class="pb-4 px-4 text-green font-weight-regular text-center"
-                >
-                  Nova šifra je kreirana. Provjerite svoju email adresu
-                </p>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-
-                  <v-btn color="primary" variant="elevated" @click="submit_password_reset">
-                    Reset
-                  </v-btn>
-                  <v-btn
-                    text="Zatvori"
+                  <v-card-text class="text-justify text-subtitle-2"
+                    >Da bi se generisala nova šifra, molimo vas da upišete ispod vašu email adresu,
+                    s kojom ste kreirali vaš korisnički nalog. Nova šifra će biti poslana na vašu
+                    email adresu.</v-card-text
+                  >
+                  <v-text-field
+                    outlined
+                    label="Email"
+                    placeholder="Upišite vaš email"
+                    class="px-4"
+                    v-model="reset_email"
+                    :rules="computed_reset_email_rules"
+                    required
                     variant="outlined"
-                    color="error"
-                    class="mr-2"
-                    @click="isActive.value = false"
-                  ></v-btn>
-                </v-card-actions>
-              </v-card>
-            </template>
-          </v-dialog>
+                    @blur="validate_reset_email"
+                  ></v-text-field>
+                  <p v-show="reset_email_error" class="pb-2 text-red font-weight-bold text-center">
+                    Korisnički nalog ne postoji.
+                  </p>
+                  <p
+                    v-show="reset_email_okay"
+                    class="pb-4 px-4 text-green font-weight-regular text-center"
+                  >
+                    Nova šifra je kreirana. Provjerite svoju email adresu
+                  </p>
 
-          <v-btn
-            @click="submit"
-            class="mb-4"
-            style="
-              width: 100%;
-              height: 3rem;
-              margin-top: 1rem;
-              background-color: #2f5382;
-              color: #ffffff;
-            "
-            outlined
-            >{{ $t('login') }}</v-btn
-          >
-        </v-form>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn color="primary" variant="elevated" @click="submit_password_reset">
+                      Reset
+                    </v-btn>
+                    <v-btn
+                      text="Zatvori"
+                      variant="outlined"
+                      color="error"
+                      class="mr-2"
+                      @click="isActive.value = false"
+                    ></v-btn>
+                  </v-card-actions>
+                </v-card>
+              </template>
+            </v-dialog>
+
+            <v-btn
+              @click="submit"
+              class="mb-4"
+              style="
+                width: 100%;
+                height: 3rem;
+                margin-top: 1rem;
+                background-color: #2f5382;
+                color: #ffffff;
+              "
+              outlined
+              >{{ $t('login') }}</v-btn
+            >
+          </v-form>
+        </v-card>
       </v-container>
     </div>
   </v-app>
