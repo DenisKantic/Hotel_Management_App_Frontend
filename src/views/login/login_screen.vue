@@ -26,7 +26,7 @@
       >
         <v-card
           class="pa-6 mt-4"
-          color="primary"
+          color="secondary"
           style="width: 100%; max-width: 500px"
           elevation="10"
         >
@@ -38,12 +38,11 @@
           <span class="text-h4">{{ $t('login') }}</span> <br />
 
           <v-form ref="form" v-model="valid" lazy-validation style="width: 100%">
-            <label>Email</label>
+            <label>Username</label>
             <v-text-field
               outlined
+              v-model="username"
               class="input_field mb-2 mt-2"
-              v-model="email"
-              :rules="computedEmailRules"
               required
               variant="outlined"
               @blur="validateEmail"
@@ -147,6 +146,8 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 
 const snackbar = ref({
   visible: false,
@@ -155,10 +156,12 @@ const snackbar = ref({
   color: 'success',
 })
 
+const authStore = useAuthStore()
+const router = useRouter()
 const is_loading = ref(true)
 const valid = ref(false)
 const form = ref()
-const email = ref('')
+const username = ref('')
 const password = ref('')
 const show_password = ref(false)
 const emailTouched = ref(false)
@@ -177,7 +180,7 @@ const rules = {
   reset_email: (value: string) => /.+@.+\..+/.test(value) || 'E-mail mora biti validan.',
 }
 
-const computedEmailRules = computed(() => (emailTouched.value ? [rules.required, rules.email] : []))
+//const computedEmailRules = computed(() => (emailTouched.value ? [rules.required, rules.email] : []))
 const computedPasswordRules = computed(() =>
   passwordTouched.value ? [rules.required, rules.password] : [],
 )
@@ -210,9 +213,17 @@ function showSnackbar(message: string, color: string) {
 async function submit_password_reset() {}
 
 async function submit() {
-  if (!email.value || !password.value) {
+  if (!username.value || !password.value) {
     showSnackbar('Niste popunili sva polja!', 'error')
     return
+  }
+
+  await authStore.login(username.value, password.value)
+
+  if (authStore.isLoggedIn) {
+    router.push({ name: 'CreateReservation' })
+  } else {
+    alert('Login failed')
   }
 }
 
